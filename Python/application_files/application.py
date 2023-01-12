@@ -12,38 +12,29 @@ class Application:
     def __init__(self):
         self.gameDisplay = None
         self.clock = None
-        self.items_to_display = {}
+        self.items_to_display = {} #creo un diccionario al que le pasare todos los objetos
 
 
     def run(self):
+        #Empiezo el pygame
         pygame.init()
+        #Pongo la pantalla en la que se dibujara todo con sus medidas
         self.gameDisplay = pygame.display.set_mode((1400, 800))
+        #Pongo la velocidad en la que se dibujaran las cosas
         self.clock = pygame.time.Clock()
         while True:
+            #Pongo funcion para poder cerrar la applicacion
             close_game_function()
-
+            #Dibujo negro en toda la pantalla para que no se dibuje sobre el dibujo anterior
             self.gameDisplay.fill((255,255,255))
 
-            # Checkear si el jugador y el enemigo estan juntos
-
-            # Checkear si el jugador y el objeto estan juntos
-
+           
+            # Observa si hay objetos dibujados a los differentes lados del dibujo (jugador)
             for paredes in self.items_to_display['paredes']:
-                izquierda, derecha, arriba, abajo = determina_si_los_objetos_colicionan(self.items_to_display['jugador'][0],
-                                                                                    paredes)
+                resultados_de_observacion = determina_si_los_objetos_colicionan(self.items_to_display['jugador'][0],
 
-
-            self.items_to_display['jugador'][0].se_puede_mover_para_izquierda = izquierda
-            self.items_to_display['jugador'][0].se_puede_mover_para_derecha = derecha
-            self.items_to_display['jugador'][0].se_puede_mover_para_arriba = arriba
-            self.items_to_display['jugador'][0].se_puede_mover_para_abajo = abajo
-
-
-
-            #determina_si_los_objetos_estan_dentro(self.items_to_display['jugador'][0],self.items_to_display['enemigo'][0])
-
-            # Update all objects
-            mover_al_jugador(self.items_to_display['jugador'][0]) # Mover al jugador
+            # La araña se puede dibujar un chin mas para alante o atras si no hay nada dibujado en esas direcciones.
+            mover_al_jugador(resultados_de_observacion) # Mover al jugador
 
             ############SPIDERWEB##############
             #Si la tecla para crear spider webs es presionada se creara una
