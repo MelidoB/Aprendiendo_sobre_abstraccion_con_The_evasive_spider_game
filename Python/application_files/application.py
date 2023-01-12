@@ -31,7 +31,7 @@ class Application:
            
             # Observa si hay objetos dibujados a los differentes lados del dibujo (jugador)
             for paredes in self.items_to_display['paredes']:
-                resultados_de_observacion = determina_si_los_objetos_colicionan(self.items_to_display['jugador'][0],
+                resultados_de_observacion = determina_si_los_objetos_colicionan(self.items_to_display['jugador'][0],paredes)
 
             # La araña se puede dibujar un chin mas para alante o atras si no hay nada dibujado en esas direcciones.
             mover_al_jugador(resultados_de_observacion) # Mover al jugador
